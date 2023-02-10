@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleCalculator
 {
-    internal class Calculator : ICalc
+    class Calculator : MathOperation
     {
-        private double total;
-        public double num1;
-        public double num2;
-        public char oper;
-        public Calculator(double num1, double num2, char oper) 
+        public Calculator( float num1, float num2, char oper)
         {
             this.num1 = num1;
             this.num2 = num2;
             this.oper = oper;
         }
+
+        public float num1;
+        public float num2;
+        public char oper;
+        /// <summary>
+        /// Метод для проверки входного оператора
+        /// </summary>
+        /// <param name="oper"></param>
         public void CheckOperator(char oper)
         {
             switch (oper) 
@@ -39,29 +44,11 @@ namespace ConsoleCalculator
                     break;
             }
         }
-        public void Subtract(double num1, double num2)
+        public static string mathOperation = "";
+        public void ViewExample()
         {
-            total = num1 - num2;
-            Console.WriteLine($"Разность {num1} и {num2} равна {total}");
+            mathOperation = $"\n{num1} {oper} {num2} = {result}";
+            Console.WriteLine(mathOperation);
         }
-
-        public void Division(double num1, double num2)
-        {
-            total = num1 / num2;
-            Console.WriteLine($"Деление {num1} и {num2} равно {total}");
-        }
-
-        public void Multiplication(double num1, double num2)
-        {
-            total = num1 * num2;
-            Console.WriteLine($"Умножение {num1} и {num2} равно {total}");
-        }
-
-        public void Sum(double num1, double num2)
-        {
-            total = num1 + num2;
-            Console.WriteLine($"Сумма {num1} и {num2} равна {total}");
-        }
-
     }
 }
